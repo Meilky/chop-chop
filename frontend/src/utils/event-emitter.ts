@@ -1,4 +1,4 @@
-import type { VoidCallback } from "./types";
+import type { VoidCallback } from "./types.ts";
 
 class CallbackError extends Error {
     constructor(event: string, cause: any = undefined) {

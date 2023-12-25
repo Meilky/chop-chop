@@ -1,4 +1,3 @@
-export interface Actions {
-    type: "test";
-    payload: string;
-}
+import type { UnitActions } from "./unit.ts";
+
+export type Actions = UnitActions
