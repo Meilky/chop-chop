@@ -14,7 +14,7 @@
 <div id="app">
     <Canvas {dispatcher} />
     <Trunk {dispatcher} {unitStore} />
-    <Preferences {dispatcher} />
+    <Preferences {dispatcher} {unitStore} />
 </div>
 
 <style>

@@ -1,8 +1,9 @@
 <script lang="ts">
+    import Cut from "./trunk/cut.svelte";
+
     import type { Dispatcher } from "../utils/dispatcher.ts";
     import type { Actions } from "../actions/index.ts";
     import type { UnitStore } from "../stores/unit.ts";
-    import Cut from "./trunk/cut.svelte";
 
     export let dispatcher: Dispatcher<Actions>;
     export let unitStore: UnitStore;

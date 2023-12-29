@@ -1,39 +1,39 @@
 import { Dispatcher } from "../utils/dispatcher.ts";
 import { EventEmitter } from "../utils/event-emitter.ts";
 
-import type { UnitActions } from "../actions/unit.ts";
 import type { Unit } from "../models/unit.ts";
+import type { Actions } from "../actions/index.ts";
 
 interface Events {
-	changed: [Unit];
+    changed: [Unit];
 }
 
 export class UnitStore extends EventEmitter<Events> {
-	private _unit: Unit = "in";
+    private _unit: Unit = "in";
 
-	constructor(dispatch: Dispatcher<UnitActions>) {
-		super();
+    constructor(dispatch: Dispatcher<Actions>) {
+        super();
 
-		dispatch.register((data: UnitActions) => this._handleEvents(data));
-	}
+        dispatch.register((data: Actions) => this._handleEvents(data));
+    }
 
-	public get(): Unit {
-		return this._unit;
-	}
+    public get(): Unit {
+        return this._unit;
+    }
 
-	private _handleEvents(data: UnitActions): void {
-		switch (data.type) {
-			case "unit.change":
-				this._onChange(data.payload);
-				break;
-		}
-	}
+    private _handleEvents(data: Actions): void {
+        switch (data.type) {
+            case "change.preferences.unit":
+                this._onChange(data.payload);
+                break;
+        }
+    }
 
-	private _onChange(unit: Unit): void {
-		if (this._unit === unit) return;
+    private _onChange(unit: Unit): void {
+        if (this._unit === unit) return;
 
-		this._unit = unit;
+        this._unit = unit;
 
-		this.emit("changed", unit);
-	}
+        this.emit("changed", unit);
+    }
 }

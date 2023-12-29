@@ -1,6 +1,8 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
 
+    import { changeTrunkDiameter } from "../../actions/trunk.ts";
+
     import type { Dispatcher } from "../../utils/dispatcher.ts";
     import type { Actions } from "../../actions/index.ts";
     import type { UnitStore } from "../../stores/unit.ts";
@@ -12,8 +14,12 @@
     let diameter: number = 0;
     let unit: Unit = "in";
 
-    function unitChanged(unit: Unit) {
-        unit = unit;
+    function unitChanged(newUnit: Unit) {
+        unit = newUnit;
+    }
+
+    function diamiterChanged() {
+        changeTrunkDiameter(dispatcher, diameter);
     }
 
     onMount(() => {
@@ -29,7 +35,7 @@
 
 <div>
     <label for="diameter">Diameter:</label>
-    <input name="diameter" type="number" bind:value={diameter} min="0" />
+    <input name="diameter" type="number" bind:value={diameter} on:change={diamiterChanged} min="0" />
     {unit}
 </div>
 

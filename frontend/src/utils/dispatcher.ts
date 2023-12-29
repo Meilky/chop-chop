@@ -1,4 +1,4 @@
-import type { VoidCallback } from "./types";
+import type { VoidCallback } from "./types.ts";
 
 export class Dispatcher<T> {
     private _callbacks: Set<VoidCallback<[T]>> = new Set();
